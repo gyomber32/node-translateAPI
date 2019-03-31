@@ -17,18 +17,14 @@ router.get('/sl=en&tl=hu&word=:word', function (req, res, next) {
         model_id: 'en-hu'
     };
 
-    languageTranslator.translate(
-        parameters,
-        function (error, response) {
-            if (error) {
-                console.log(error);
-                return error;
-            } else {
-                let word = (response.translations[0].translation).toLowerCase();
-                res.status(200).send(word);
-            }
+    languageTranslator.translate(parameters, function (error, response) {
+        if (error) {
+            res.status(404).send(error);
+        } else {
+            let word = (response.translations[0].translation).toLowerCase();
+            res.status(200).send(word);
         }
-    );
+    });
 });
 
 /* GET hungarian to english */
@@ -39,18 +35,16 @@ router.get('/sl=hu&tl=en&word=:word', function (req, res, next) {
         model_id: 'hu-en'
     };
 
-    languageTranslator.translate(
-        parameters,
-        function (error, response) {
-            if (error) {
-                console.log(error);
-                return error;
-            } else {
-                let word = (response.translations[0].translation).toLowerCase();
-                res.status(200).send(word);
-            }
+    languageTranslator.translate(parameters, function (error, response) {
+        if (error) {
+            res.status(404).send(error);
+        } else {
+            let word = (response.translations[0].translation).toLowerCase();
+            res.status(200).send(word);
         }
+    }
     );
 });
 
 module.exports = router;
+
