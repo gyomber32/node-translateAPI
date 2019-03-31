@@ -1,12 +1,13 @@
 var createError = require('http-errors');
+var cors = require('cors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
-var translateRouter = require('./routes/translate');
-
 var app = express();
+app.use(cors());
+app.options('*', cors());
+var translateRouter = require('./routes/translate');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

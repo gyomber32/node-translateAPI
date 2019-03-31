@@ -1,4 +1,5 @@
 var express = require('express');
+var cors = require('cors');
 var router = express.Router();
 
 var LanguageTranslatorV3 = require('watson-developer-cloud/language-translator/v3');
